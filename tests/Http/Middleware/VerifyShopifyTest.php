@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Request;
 use Osiset\ShopifyApp\Exceptions\HttpException;
 use Osiset\ShopifyApp\Exceptions\SignatureVerificationException;
 use Osiset\ShopifyApp\Http\Middleware\VerifyShopify;
+use Osiset\ShopifyApp\Http\Middleware\VerifyShopifyEmbedded;
 use Osiset\ShopifyApp\Test\TestCase;
 
 class VerifyShopifyTest extends TestCase
@@ -35,7 +36,6 @@ class VerifyShopifyTest extends TestCase
             // Server vars
             []
         );
-
         // Run the middleware
         $this->runMiddleware(VerifyShopify::class, $newRequest);
     }
@@ -60,7 +60,7 @@ class VerifyShopifyTest extends TestCase
         );
 
         // Run the middleware
-        $result = $this->runMiddleware(VerifyShopify::class, $newRequest);
+        $result = $this->runMiddleware(VerifyShopifyEmbedded::class, $newRequest);
         $this->assertTrue($result[0]);
     }
 
@@ -87,7 +87,8 @@ class VerifyShopifyTest extends TestCase
         );
 
         // Run the middleware
-        $result = $this->runMiddleware(VerifyShopify::class, $newRequest);
+        $result = $this->runMiddleware(VerifyShopifyEmbedded::class, $newRequest);
+
         $this->assertFalse($result[0]);
     }
 
@@ -119,7 +120,7 @@ class VerifyShopifyTest extends TestCase
         );
 
         // Run the middleware
-        $result = $this->runMiddleware(VerifyShopify::class, $newRequest);
+        $result = $this->runMiddleware(VerifyShopifyEmbedded::class, $newRequest);
         $this->assertFalse($result[0]);
     }
 
@@ -149,7 +150,7 @@ class VerifyShopifyTest extends TestCase
         );
 
         // Run the middleware
-        $result = $this->runMiddleware(VerifyShopify::class, $newRequest);
+        $result = $this->runMiddleware(VerifyShopifyEmbedded::class, $newRequest);
         $this->assertTrue($result[0]);
     }
 
@@ -176,7 +177,7 @@ class VerifyShopifyTest extends TestCase
         );
 
         // Run the middleware
-        $result = $this->runMiddleware(VerifyShopify::class, $newRequest);
+        $result = $this->runMiddleware(VerifyShopifyEmbedded::class, $newRequest);
         $this->assertFalse($result[0]);
     }
 
@@ -205,7 +206,7 @@ class VerifyShopifyTest extends TestCase
         );
 
         // Run the middleware
-        $result = $this->runMiddleware(VerifyShopify::class, $newRequest);
+        $result = $this->runMiddleware(VerifyShopifyEmbedded::class, $newRequest);
         $this->assertFalse($result);
     }
 
@@ -229,7 +230,7 @@ class VerifyShopifyTest extends TestCase
         );
 
         // Run the middleware
-        $result = $this->runMiddleware(VerifyShopify::class, $newRequest);
+        $result = $this->runMiddleware(VerifyShopifyEmbedded::class, $newRequest);
         $this->assertFalse($result[0]);
     }
 
@@ -258,7 +259,7 @@ class VerifyShopifyTest extends TestCase
         );
 
         // Run the middleware
-        $result = $this->runMiddleware(VerifyShopify::class, $newRequest);
+        $result = $this->runMiddleware(VerifyShopifyEmbedded::class, $newRequest);
         $this->assertFalse($result[0]);
     }
 
@@ -291,7 +292,7 @@ class VerifyShopifyTest extends TestCase
         Request::swap($newRequest);
 
         // Run the middleware
-        $result = $this->runMiddleware(VerifyShopify::class, $newRequest);
+        $result = $this->runMiddleware(VerifyShopifyEmbedded::class, $newRequest);
         $this->assertTrue($result[0]);
 
         // Run the middleware and change the shop
@@ -315,6 +316,6 @@ class VerifyShopifyTest extends TestCase
         );
 
         $this->expectException(HttpException::class);
-        $this->runMiddleware(VerifyShopify::class, $newRequest);
+        $this->runMiddleware(VerifyShopifyEmbedded::class, $newRequest);
     }
 }
