@@ -21,6 +21,11 @@ class VerifyShopify
      */
     protected $apiHelper;
 
+    public function __construct(IApiHelper $apiHelper){
+        $this->apiHelper = $apiHelper;
+        $this->apiHelper->make();
+    }
+
     public function handle(Request $request, Closure $next)
     {
         // Verify the HMAC (if available)
@@ -52,7 +57,6 @@ class VerifyShopify
 
         // We have HMAC, validate it
         $data = $this->getRequestData($request, $hmac['source']);
-
         return $this->apiHelper->verifyRequest($data);
     }
 

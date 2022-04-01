@@ -35,7 +35,6 @@ class VerifyShopifyTest extends TestCase
             // Server vars
             []
         );
-
         // Run the middleware
         $this->runMiddleware(VerifyShopify::class, $newRequest);
     }
