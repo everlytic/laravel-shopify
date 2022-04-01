@@ -11,7 +11,7 @@ use Orchestra\Testbench\Http\Middleware\RedirectIfAuthenticated;
 use Osiset\ShopifyApp\Http\Middleware\AuthProxy;
 use Osiset\ShopifyApp\Http\Middleware\AuthWebhook;
 use Osiset\ShopifyApp\Http\Middleware\Billable;
-use Osiset\ShopifyApp\Http\Middleware\VerifyShopify;
+use Osiset\ShopifyApp\Http\Middleware\VerifyShopifyEmbedded;
 
 class Kernel extends \Orchestra\Testbench\Http\Kernel
 {
@@ -31,7 +31,7 @@ class Kernel extends \Orchestra\Testbench\Http\Kernel
         'throttle' => ThrottleRequests::class,
 
         // Added for testing
-        'verify.shopify' => VerifyShopify::class,
+        'verify.shopify' => VerifyShopifyEmbedded::class,
         'auth.webhook' => AuthWebhook::class,
         'auth.proxy' => AuthProxy::class,
         'billable' => Billable::class,
