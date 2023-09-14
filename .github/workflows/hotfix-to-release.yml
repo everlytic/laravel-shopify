@@ -1,0 +1,17 @@
+name: "Hotfix to Release Automation"
+on:
+  push:
+    branches:
+      - "hotfix/*"
+
+jobs:
+  merge-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.5.0
+      - uses: everlytic/branch-merge-v2@master
+        with:
+          github_token: ${{ secrets.ADMIN_REYAAN_MERGE_TOKEN }}
+          source_ref: ${{ github.ref }}
+          target_branch: "release/*"
+          commit_message_template: '[BOT] - Auto-merge {source_ref} into {target_branch}'
