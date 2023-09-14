@@ -1,0 +1,17 @@
+name: "Master to Develop Automation"
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  merge-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.5.0
+      - uses: everlytic/branch-merge@1.1.5
+        with:
+          github_token: ${{ secrets.ADMIN_REYAAN_MERGE_TOKEN }}
+          source_ref: ${{ github.ref }}
+          target_branch: 'develop'
+          commit_message_template: '[BOT] - Auto-merge {source_ref} into {target_branch}'
